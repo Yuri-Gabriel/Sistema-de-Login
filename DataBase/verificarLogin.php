@@ -25,16 +25,22 @@
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['senha'];
 
+                if (isset($_SESSION['emailNotCad'])) {
+                    $_SESSION['emailNotCad'] = false;
+                }
 
                 header("Location: ../Home/Home.php");
             }
         } else {
             unset($_SESSION['email']);
             unset($_SESSION['password']);
-            header("Location: ../Login/Login.html");
+
+            $_SESSION['emailNotCad'] = true;
+
+            header("Location: ../Login/Login.php");
         }
 
     } else {
-        header('Location: ../Login/Login.html');
+        header('Location: ../Login/Login.php');
     }
 ?>

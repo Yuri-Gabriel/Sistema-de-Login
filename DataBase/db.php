@@ -24,9 +24,11 @@ try {
         return $rows;
     }
 
-    function Insert($conection, $nome, $idade, $email) : void {
-        $sql = $conection->prepare("INSERT INTO cadastro VALUES (null, '$nome', '$idade', '$email')");
-        $sql->execute();
+    function Insert($conection, $values) : void {
+        $sql = sprintf("INSERT INTO cadastro VALUES (default, %s)", $values);
+
+        $prepare = $conection->prepare($sql);
+        $prepare->execute();
     }
 
     function Update($conection, $nome, $id) : void {
