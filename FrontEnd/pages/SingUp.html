@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/SingUp.css">
+    <title>SingUp</title>
+</head>
+<body>
+    <section>
+        <fieldset>
+            <legend><b>Sistema de Login</b></legend>
+            <div class="inputbox">
+                <input type="text" name="username" required class="input">
+                <label class="label" for="username">
+                    Username
+                </label>
+            </div>
+            <div class="inputbox">
+                <input type="email" name="email" class="input" required>
+                <label class="label" for="email">
+                    E-mail 
+                </label>
+            </div>
+            <div class="inputbox">
+                <input type="password" name="password" class="input" required>
+                <label class="label" for="password">Password</label>
+            </div>
+            <button id="btnSingUp">
+                Cadastrar
+            </button>
+            <div class="singUp">
+                <label for="cadastrar">
+                    Já possui conta?
+                </label>
+                <a href="../pages/Login.html">Entre</a>
+            </div>
+        </fieldset>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../script/SingUp.js"></script>
+</body>
+</html>
