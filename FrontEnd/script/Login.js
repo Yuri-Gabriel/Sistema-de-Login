@@ -1,5 +1,5 @@
 localStorage.clear();
-const apiURL = 'https://loginnode-production.up.railway.app';
+const apiURL = 'http://localhost:3030'
 
 const btnLogin = document.querySelector("#btnLogin");
 btnLogin.addEventListener("click", () => {
@@ -9,7 +9,6 @@ btnLogin.addEventListener("click", () => {
         email: Email,
         password: Password
     }
-    console.log(data);
     Login(data);
 })
 
@@ -20,10 +19,8 @@ const Login = (data) => {
 }
 
 const APIResult = (apiRes) => {
-    console.log(apiRes);
     if (apiRes.data.length != 0) {
-        localStorage.setItem("nome", apiRes.data.nome);
-        localStorage.setItem("email", apiRes.data.email);
+        localStorage.setItem("token", apiRes.data.token);
         window.location.href = "../pages/Home.html"
     } else {
         alert("Usuario nao encontrado, crie uma conta")

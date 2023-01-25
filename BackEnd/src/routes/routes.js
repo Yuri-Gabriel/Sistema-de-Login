@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const bodyParser = require('body-parser');
 
@@ -44,9 +45,40 @@ router.post('/SingIn', async (req, res) => {
 
     if (CheckIfTheUserExists("", email, password)) {
         const user = await GetUser(email);
-        res.json(user);
+        const token = jwt.sign(user, 'shhhhh',  {
+            expiresIn: 30
+        });
+        res.send({
+            token: token
+        })
     } else {
         res.send("Crie esse usuario");
+    }
+});
+
+router.post('/CheckToken', (req, res) => {
+    const { token } = req.body;
+
+    let user = undefined;
+    
+    try {
+        const decoded = jwt.verify(token, 'shhhhh');
+        if (decoded) {
+            user = decoded;
+        }
+        if (typeof user !== 'object') {
+            res.send({
+                erro: "usuario não encontrado"
+            });
+        } else {
+            res.send(user);
+        }
+    } catch (err) {
+        if (err.message == "jwt expired") {
+            res.send({
+                erro: "token expirado"
+            });
+        }
     }
 });
 

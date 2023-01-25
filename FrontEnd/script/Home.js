@@ -1,11 +1,21 @@
-const userEmail = localStorage.getItem('email');
-const userNome = localStorage.getItem('nome');
-if (userEmail == "undefined" || userNome == "undefined") {
+
+const token = localStorage.getItem('token');
+if (token == "undefined") {
     window.location.href = "../pages/Login.html";
 }
 
-document.querySelector("span#userName").innerHTML = `Usuario: ${userNome}`;
-document.querySelector("span#userEmail").innerHTML = `Email: ${userEmail}`;
+const url = 'http://localhost:3030';
+
+axios.post(`${url}/CheckToken`, { token: token }).then(response => {
+    const { data } = response
+    if (data.erro) {
+        alert(data.erro);
+    } else {
+        const { nome, email } = data;
+        document.querySelector("span#userName").innerHTML = `Usuario: ${nome}`;
+        document.querySelector("span#userEmail").innerHTML = `Email: ${email}`;
+    }
+});
 
 const btnLogOut = document.querySelector("button#logOut");
 btnLogOut.addEventListener("click", () => {

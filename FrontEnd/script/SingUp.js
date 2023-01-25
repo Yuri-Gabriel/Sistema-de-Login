@@ -1,4 +1,4 @@
-const apiURL = 'https://loginnode-production.up.railway.app';
+const apiURL = 'http://localhost:3030';
 
 const btnSingUp = document.querySelector("button#btnSingUp");
 btnSingUp.addEventListener("click", () => {
@@ -24,11 +24,6 @@ const SingUp = (data) => {
 }
 
 const ApiResult = (res) => {
-    /*if (res.data == "Cadastrado com sucesso!") {
-
-    } else if (res.response.status == 404) {
-        console.log("Error")
-    }*/
     switch (res.data) {
         case "Cadastrado com sucesso!":
             alert("Cadastrado com sucesso!");
@@ -39,7 +34,3 @@ const ApiResult = (res) => {
             break;
     }
 }
-
-
-
-//Cadastrado com sucesso!
